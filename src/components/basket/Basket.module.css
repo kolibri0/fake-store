@@ -1,4 +1,21 @@
 .basket{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    width: 80vw;
+    display: block;
+    margin: 0 auto;
+}
+.price{
+    text-align: center;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+.item{
+    display: flex;
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+.img{
+    height: 130px;
+    margin-right: 15px;
 }

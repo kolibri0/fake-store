@@ -112,13 +112,23 @@ module.exports = function (webpackEnv) {
         loader: MiniCssExtractPlugin.loader,
         // css is located in `static/css`, use '../../' to locate index.html folder
         // in production `paths.publicUrlOrPath` can be a relative path
+
         options: paths.publicUrlOrPath.startsWith('.')
           ? { publicPath: '../../' }
           : {},
+        
       },
       {
         loader: require.resolve('css-loader'),
-        options: cssOptions,
+        // options: cssOptions,
+        options: {
+          modules: {
+            mode: "local",
+            localIdentName: "[name]_[local]_[hash:base64:5]"
+          },
+          import: true,
+          importLoaders: true
+        }  
       },
       {
         // Options for PostCSS as we reference these options twice
@@ -473,12 +483,13 @@ module.exports = function (webpackEnv) {
               exclude: cssModuleRegex,
               use: getStyleLoaders({
                 importLoaders: 1,
-                sourceMap: isEnvProduction
-                  ? shouldUseSourceMap
-                  : isEnvDevelopment,
-                modules: {
-                  mode: 'icss',
-                },
+              sourceMap: isEnvProduction
+                ? shouldUseSourceMap
+                : isEnvDevelopment,
+              modules: {
+                // mode: 'icss',
+                getLocalIdent: getCSSModuleLocalIdent,
+              }
               }),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
