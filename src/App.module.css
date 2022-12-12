@@ -13,10 +13,11 @@
 .img{
     width: 50px;
     padding: 5px;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 4px;
     cursor: pointer;
+    z-index: 10;
 }
 .count{
     width: 15px;
@@ -24,12 +25,13 @@
     border-radius: 50%;
     text-align: center;
     padding: 4px 4px 6px 4px;
-    position: absolute;
+    position: fixed;
     top: 37px;
     right: 10px;
     color: #ffffff;
     background-color: rgb(253, 105, 51); 
     cursor: pointer;
+    z-index: 11;
 }
 .contain{
     align-items: center;

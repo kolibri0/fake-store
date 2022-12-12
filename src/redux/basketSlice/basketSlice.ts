@@ -27,7 +27,7 @@ const BasketSlice = createSlice({
             }else{
                 state.items.push({...action.payload, count: 1})
             }
-            state.allPrice = Math.round(state.items.reduce((a, b) => a + (b.price * b.count), 0))
+            state.allPrice = state.items.reduce((a, b) => a + (b.price * b.count), 0)
         },
         removeItem(state, action: PayloadAction<IItem>){
             const item = state.items.find((item: any) => item.id === action.payload.id)
@@ -37,7 +37,7 @@ const BasketSlice = createSlice({
                 }else{
                     state.items = state.items.filter((item) => item.id !== action.payload.id)   
                 }
-                state.allPrice = Math.round(state.items.reduce((a, b) => a + (b.price * b.count), 0))
+                state.allPrice = state.items.reduce((a, b) => a + (b.price * b.count), 0)
             }
 
         },

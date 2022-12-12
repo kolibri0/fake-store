@@ -1,6 +1,7 @@
 import { useEffect } from "react"
-import { removeItem } from "../../redux/basketSlice/basketSlice"
+import { addItem, removeItem } from "../../redux/basketSlice/basketSlice"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import BasketItem from "./basket-item/basket-item"
 import style from './basket.module.css'
 
 const Basket = () => {
@@ -10,30 +11,19 @@ const Basket = () => {
     const remove = (item: any) => {
         dispatch(removeItem(item))
     }
+    const add = (item: any) => {
+        dispatch(addItem(item))
+    }
 
     return (
         <div className={style.basket}>
-            <div className={style.price}>Total price ${allPrice}</div>
+            {allPrice ? 
+                <div className={style.price}>Total price ${allPrice.toFixed(2)}</div>
+            :
+                <div className={style.price}>Add product in basket</div>    
+            }
             {items.map((item) => (
-                <div className={style.item} key={item.id}>
-                <div>
-                    <div>
-                        <img className={style.img} src={item.image} alt="" />
-                    </div>
-                </div>
-                <div>
-                    <div>{item.title}</div> 
-                    <div>
-                        <div className={style.aa}>Price: ${item.price}</div> 
-                        <div>Category: {item.category}</div> 
-                    </div>   
-                </div>
-                <div className={style.right}>
-                    <button className={style.btn}>+</button>
-                    <p>{item.count}</p>
-                    <button className={style.btn} onClick={() => remove(item)}>-</button>
-                </div>
-            </div>
+                <BasketItem item={item} add={add} remove={remove} />
             ))}
         </div>
     )
