@@ -18,3 +18,19 @@
     right: 4px;
     cursor: pointer;
 }
+.count{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 4px 4px 6px 4px;
+    position: absolute;
+    top: 37px;
+    right: 10px;
+    color: #ffffff;
+    background-color: rgb(253, 105, 51); 
+    cursor: pointer;
+}
+.contain{
+    align-items: center;
+}

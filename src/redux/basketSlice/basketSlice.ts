@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IItem } from '../../components/products/product'
 
+
 interface IinitialState {
     items: IItem[]
     allPrice: number
@@ -26,11 +27,18 @@ const BasketSlice = createSlice({
             }else{
                 state.items.push({...action.payload, count: 1})
             }
-
-            state.allPrice = state.items.reduce((a, b) => a + (b.price * b.count), 0)
+            state.allPrice = Math.round(state.items.reduce((a, b) => a + (b.price * b.count), 0))
         },
         removeItem(state, action: PayloadAction<IItem>){
-            state.items = state.items.filter((item) => item.id !== action.payload.id)
+            const item = state.items.find((item: any) => item.id === action.payload.id)
+            if(item){
+                if(item?.count >1){
+                    item.count--
+                }else{
+                    state.items = state.items.filter((item) => item.id !== action.payload.id)   
+                }
+                state.allPrice = Math.round(state.items.reduce((a, b) => a + (b.price * b.count), 0))
+            }
 
         },
         removeAll(state){

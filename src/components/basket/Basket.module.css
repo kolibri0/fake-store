@@ -14,8 +14,28 @@
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 10px;
+    position: relative;
 }
 .img{
     height: 130px;
     margin-right: 15px;
+}
+.right{
+    position: absolute;
+    right: 15px;
+    bottom: 17%;
+    text-align: center;
+}
+.btn{
+    height: 27px;
+    width: 27px;
+    border: none;
+    background-color: rgb(223, 221, 221);
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: all 0.5s;
+}
+.btn:hover{
+    background-color: rgb(187, 187, 187);
 }
